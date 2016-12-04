@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{FF9017E5-E958-A1E3-6A7A-2409FF89729A}") = "RhythmBeatdown_Prototype", "Assembly-CSharp.csproj", "{1501A5EE-3F6C-276D-9141-18C47EC69DDA}"
+EndProject
+Project("{FF9017E5-E958-A1E3-6A7A-2409FF89729A}") = "RhythmBeatdown_Prototype", "Assembly-UnityScript.unityproj", "{8EE2E794-A2F9-A3D4-0D64-D0D4A2D9C6F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1501A5EE-3F6C-276D-9141-18C47EC69DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1501A5EE-3F6C-276D-9141-18C47EC69DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1501A5EE-3F6C-276D-9141-18C47EC69DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1501A5EE-3F6C-276D-9141-18C47EC69DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE2E794-A2F9-A3D4-0D64-D0D4A2D9C6F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE2E794-A2F9-A3D4-0D64-D0D4A2D9C6F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE2E794-A2F9-A3D4-0D64-D0D4A2D9C6F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE2E794-A2F9-A3D4-0D64-D0D4A2D9C6F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
