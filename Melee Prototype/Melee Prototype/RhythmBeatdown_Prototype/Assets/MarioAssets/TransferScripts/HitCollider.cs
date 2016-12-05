@@ -9,6 +9,7 @@ public class HitCollider : MonoBehaviour {
 	public Fighter owner;
 	private Animator anim;
 	public GameObject impactParticle;
+	private GameObject impactPart;
 	// Use this for initialization
 	void OnEnable()
 	{
@@ -32,7 +33,8 @@ public class HitCollider : MonoBehaviour {
 		{
 			if (!opponent.gettingHit /* && !opponent.blocking*/) {
 				anim.SetTrigger ("TakeHit");
-				Instantiate(impactParticle, hitCol.transform.position, Quaternion.identity);
+				impactPart = Instantiate(impactParticle, hitCol.transform.position, Quaternion.identity) as GameObject;
+				Destroy (impactPart, 0.5f);
 				//hitCol.SetActive (false);
 				print ("I hit " + opponent + " with " + hitCol);
 			} else if (opponent.blocking) {
@@ -46,6 +48,7 @@ public class HitCollider : MonoBehaviour {
 		hitCol.SetActive(true);
 		print ("Reset Hit Col");
 	}
+		
 
 }
 

@@ -27,8 +27,8 @@ public class ProjectileScript2 : MonoBehaviour
             impactParticle = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.left, impactNormal)) as GameObject;
 
             //destroy upon collision
-            Destroy(projectileParticle, 3f);
-            Destroy(impactParticle, 5f);
+            Destroy(projectileParticle, 0.2f);
+            Destroy(impactParticle, 0.2f);
             Destroy(gameObject);
             print("destroyed");
         }

@@ -13,6 +13,11 @@ public class StandardAttacks : MonoBehaviour {
 	public GameObject p2SpawnPointM;
 	public GameObject p2SpawnPointL;
 
+	//Melee Trail Renderers
+	public GameObject P1_R_Hand_Trail;
+	public GameObject P1_L_Hand_Trail;
+	public GameObject P1_R_Foot_Trail;
+
 	public float projectileHighUp = 15f;
 	public float projectileMedUp = 6f;
 	public float projectileLowUp = 3f;
@@ -37,6 +42,8 @@ public class StandardAttacks : MonoBehaviour {
 	{
 		anim = this.GetComponent<Animator> ();
 		fighter = this.GetComponent<Fighter> ();
+		P1_R_Hand_Trail.SetActive (false);
+		P1_L_Hand_Trail.SetActive (false);
 	}
 
 	void OnEnable()
@@ -95,16 +102,19 @@ public class StandardAttacks : MonoBehaviour {
 
 		ChainCheck ();
 
-		if (fighter.grounded && BoteManager.onBote == true)
+		if (fighter.grounded /*&& BoteManager.onBote == true*/)
 		{
 			//attackCount++;
 			if (lowSwitch == false)
 			{
+				
 				anim.SetTrigger ("LowAttack1");
 				lowSwitch = !lowSwitch;
+
 			}
 			else
 			{
+				
 				anim.SetTrigger ("LowAttack2");
 				lowSwitch = !lowSwitch;
 			}
@@ -116,15 +126,18 @@ public class StandardAttacks : MonoBehaviour {
 	void MedAttack()
 	{
 		ChainCheck ();
-		if (fighter.grounded && BoteManager.onBote == true)
+		if (fighter.grounded /*&& BoteManager.onBote == true*/)
 		{
 			if (medSwitch == false)
 			{
+				StartCoroutine (LH_P1Melee ());
 				anim.SetTrigger ("MedAttack1");
 				medSwitch = !medSwitch;
+
 			}
 			else
 			{
+				StartCoroutine (RH_P1Melee());
 				anim.SetTrigger ("MedAttack2");
 				medSwitch = !medSwitch;
 			}
@@ -133,20 +146,35 @@ public class StandardAttacks : MonoBehaviour {
 
 	}
 
+	IEnumerator LH_P1Melee()
+	{
+		P1_R_Hand_Trail.SetActive(true);
+		yield return new WaitForSeconds (0.2f);
+		P1_R_Hand_Trail.SetActive(false);
+	}
+
+	IEnumerator RH_P1Melee()
+	{
+		P1_L_Hand_Trail.SetActive(true);
+		yield return new WaitForSeconds (0.2f);
+		P1_L_Hand_Trail.SetActive(false);
+	}
 	void HighAttack()
 	{
 		ChainCheck ();
 		//attackCount = 0;
-		if (fighter.grounded && BoteManager.onBote == true)
+		if (fighter.grounded /*&& BoteManager.onBote == true*/)
 		{
 			//attackCount++;
 			if (highSwitch == false)
 			{
+				
 				anim.SetTrigger ("HighAttack1");
 				highSwitch = !highSwitch;
 			}
 			else
 			{
+				
 				anim.SetTrigger ("HighAttack2");
 				highSwitch = !highSwitch;
 			}
