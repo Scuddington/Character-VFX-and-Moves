@@ -10,6 +10,8 @@ public class Fighter : MonoBehaviour {
 	public FighterStates currentState = FighterStates.Idle;
 	private bool onGround = true;
 
+	public GameObject LandEffect;
+
 	// Use this for initialization
 	void Start () {
 		myBody = GetComponent<Rigidbody> ();
@@ -56,6 +58,7 @@ public class Fighter : MonoBehaviour {
 		if (col.gameObject.tag == "ground")
 		{
 			onGround = true;
+			StartCoroutine (LandingEffectStart ());
 		}
 	}
 	void OnCollisionExit (Collision col)
@@ -64,5 +67,12 @@ public class Fighter : MonoBehaviour {
 		{
 			onGround = false;
 		}
+	}
+
+	IEnumerator LandingEffectStart()
+	{		
+		LandEffect.SetActive(true);
+		yield return new WaitForSeconds (0.2f);
+		LandEffect.SetActive(false);
 	}
 }

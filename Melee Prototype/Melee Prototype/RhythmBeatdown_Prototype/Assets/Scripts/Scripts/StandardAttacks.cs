@@ -44,6 +44,7 @@ public class StandardAttacks : MonoBehaviour {
 		fighter = this.GetComponent<Fighter> ();
 		P1_R_Hand_Trail.SetActive (false);
 		P1_L_Hand_Trail.SetActive (false);
+		P1_R_Foot_Trail.SetActive (false);
 	}
 
 	void OnEnable()
@@ -107,7 +108,7 @@ public class StandardAttacks : MonoBehaviour {
 			//attackCount++;
 			if (lowSwitch == false)
 			{
-				
+				StartCoroutine (RF_P1Melee());
 				anim.SetTrigger ("LowAttack1");
 				lowSwitch = !lowSwitch;
 
@@ -130,35 +131,20 @@ public class StandardAttacks : MonoBehaviour {
 		{
 			if (medSwitch == false)
 			{
-				StartCoroutine (LH_P1Melee ());
+				StartCoroutine (RH_P1Melee());
 				anim.SetTrigger ("MedAttack1");
 				medSwitch = !medSwitch;
-
 			}
 			else
 			{
-				StartCoroutine (RH_P1Melee());
+				StartCoroutine (LH_P1Melee ());
 				anim.SetTrigger ("MedAttack2");
 				medSwitch = !medSwitch;
 			}
-
 		}
-
 	}
 
-	IEnumerator LH_P1Melee()
-	{
-		P1_R_Hand_Trail.SetActive(true);
-		yield return new WaitForSeconds (0.2f);
-		P1_R_Hand_Trail.SetActive(false);
-	}
 
-	IEnumerator RH_P1Melee()
-	{
-		P1_L_Hand_Trail.SetActive(true);
-		yield return new WaitForSeconds (0.2f);
-		P1_L_Hand_Trail.SetActive(false);
-	}
 	void HighAttack()
 	{
 		ChainCheck ();
@@ -168,13 +154,13 @@ public class StandardAttacks : MonoBehaviour {
 			//attackCount++;
 			if (highSwitch == false)
 			{
-				
+				StartCoroutine (RH_P1Melee());
 				anim.SetTrigger ("HighAttack1");
 				highSwitch = !highSwitch;
 			}
 			else
 			{
-				
+				StartCoroutine (RH_P1Melee());
 				anim.SetTrigger ("HighAttack2");
 				highSwitch = !highSwitch;
 			}
@@ -182,6 +168,28 @@ public class StandardAttacks : MonoBehaviour {
 
 		}
 
+	}
+
+	//Melee Effects Coroutines
+	IEnumerator LH_P1Melee()
+	{		
+		P1_L_Hand_Trail.SetActive(true);
+		yield return new WaitForSeconds (0.2f);
+		P1_L_Hand_Trail.SetActive(false);
+	}
+
+	IEnumerator RH_P1Melee()
+	{
+		P1_R_Hand_Trail.SetActive(true);
+		yield return new WaitForSeconds (0.2f);
+		P1_R_Hand_Trail.SetActive(false);
+	}
+
+	IEnumerator RF_P1Melee()
+	{
+		P1_R_Foot_Trail.SetActive(true);
+		yield return new WaitForSeconds (0.2f);
+		P1_R_Foot_Trail.SetActive(false);
 	}
 
 
