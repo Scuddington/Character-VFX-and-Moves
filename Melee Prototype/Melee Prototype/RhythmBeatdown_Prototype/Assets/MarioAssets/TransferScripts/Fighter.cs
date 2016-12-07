@@ -10,10 +10,12 @@ public class Fighter : MonoBehaviour {
 	public FighterStates currentState = FighterStates.Idle;
 	private bool onGround = true;
 
+    //Landing and Jumping effects
 	public GameObject LandEffect;
+    public GameObject JumpEffect;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		myBody = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
 	}
@@ -75,4 +77,11 @@ public class Fighter : MonoBehaviour {
 		yield return new WaitForSeconds (0.2f);
 		LandEffect.SetActive(false);
 	}
+
+    //IEnumerator JumpingEffectStart()
+    //{
+    //    JumpEffect.SetActive(true);
+    //    yield return new WaitForSeconds(0.2f);
+    //    JumpEffect.SetActive(false);
+    //}
 }

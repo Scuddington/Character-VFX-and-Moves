@@ -14,11 +14,12 @@ public class StandardAttacks : MonoBehaviour {
 	public GameObject p2SpawnPointL;
 
 	//Melee Trail Renderers
-	public GameObject P1_R_Hand_Trail;
-	public GameObject P1_L_Hand_Trail;
-	public GameObject P1_R_Foot_Trail;
+	public GameObject R_Hand_Trail;
+	public GameObject L_Hand_Trail;
+	public GameObject R_Foot_Trail;
+    public GameObject L_Foot_Trail;
 
-	public float projectileHighUp = 15f;
+    public float projectileHighUp = 15f;
 	public float projectileMedUp = 6f;
 	public float projectileLowUp = 3f;
 
@@ -42,10 +43,11 @@ public class StandardAttacks : MonoBehaviour {
 	{
 		anim = this.GetComponent<Animator> ();
 		fighter = this.GetComponent<Fighter> ();
-		P1_R_Hand_Trail.SetActive (false);
-		P1_L_Hand_Trail.SetActive (false);
-		P1_R_Foot_Trail.SetActive (false);
-	}
+		R_Hand_Trail.SetActive (false);
+		L_Hand_Trail.SetActive (false);
+		R_Foot_Trail.SetActive (false);
+        L_Foot_Trail.SetActive(false);
+    }
 
 	void OnEnable()
 	{
@@ -108,15 +110,15 @@ public class StandardAttacks : MonoBehaviour {
 			//attackCount++;
 			if (lowSwitch == false)
 			{
-				StartCoroutine (RF_P1Melee());
+				StartCoroutine (RF_Melee());
 				anim.SetTrigger ("LowAttack1");
 				lowSwitch = !lowSwitch;
 
 			}
 			else
 			{
-				
-				anim.SetTrigger ("LowAttack2");
+                StartCoroutine(LF_Melee());
+                anim.SetTrigger ("LowAttack2");
 				lowSwitch = !lowSwitch;
 			}
 
@@ -131,13 +133,13 @@ public class StandardAttacks : MonoBehaviour {
 		{
 			if (medSwitch == false)
 			{
-				StartCoroutine (RH_P1Melee());
+				StartCoroutine (RH_Melee());
 				anim.SetTrigger ("MedAttack1");
 				medSwitch = !medSwitch;
 			}
 			else
 			{
-				StartCoroutine (LH_P1Melee ());
+				StartCoroutine (LH_Melee ());
 				anim.SetTrigger ("MedAttack2");
 				medSwitch = !medSwitch;
 			}
@@ -154,13 +156,13 @@ public class StandardAttacks : MonoBehaviour {
 			//attackCount++;
 			if (highSwitch == false)
 			{
-				StartCoroutine (RH_P1Melee());
+				StartCoroutine (RH_Melee());
 				anim.SetTrigger ("HighAttack1");
 				highSwitch = !highSwitch;
 			}
 			else
 			{
-				StartCoroutine (RH_P1Melee());
+				StartCoroutine (RH_Melee());
 				anim.SetTrigger ("HighAttack2");
 				highSwitch = !highSwitch;
 			}
@@ -171,29 +173,36 @@ public class StandardAttacks : MonoBehaviour {
 	}
 
 	//Melee Effects Coroutines
-	IEnumerator LH_P1Melee()
+	IEnumerator LH_Melee()
 	{		
-		P1_L_Hand_Trail.SetActive(true);
+		L_Hand_Trail.SetActive(true);
 		yield return new WaitForSeconds (0.2f);
-		P1_L_Hand_Trail.SetActive(false);
+		L_Hand_Trail.SetActive(false);
 	}
 
-	IEnumerator RH_P1Melee()
+	IEnumerator RH_Melee()
 	{
-		P1_R_Hand_Trail.SetActive(true);
+	    R_Hand_Trail.SetActive(true);
 		yield return new WaitForSeconds (0.2f);
-		P1_R_Hand_Trail.SetActive(false);
+		R_Hand_Trail.SetActive(false);
 	}
 
-	IEnumerator RF_P1Melee()
+	IEnumerator RF_Melee()
 	{
-		P1_R_Foot_Trail.SetActive(true);
+		R_Foot_Trail.SetActive(true);
 		yield return new WaitForSeconds (0.2f);
-		P1_R_Foot_Trail.SetActive(false);
+		R_Foot_Trail.SetActive(false);
 	}
 
+    IEnumerator LF_Melee()
+    {
+        L_Foot_Trail.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        L_Foot_Trail.SetActive(false);
+    }
 
-	void Dodge()
+
+    void Dodge()
 	{
 		print ("Dodge");
 	}
